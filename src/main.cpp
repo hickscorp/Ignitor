@@ -9,4 +9,7 @@ void setup()
     state = new Iggy::State(sizeof(seq), seq, io, &crsfSerial);
 }
 
-void loop() { state->loop(); }
+void loop()
+{
+    state->loop();
+}

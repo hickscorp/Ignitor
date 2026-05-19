@@ -233,9 +233,12 @@ namespace Iggy
         break;
       case Phase::Sequencing:
         if (_phase != Phase::Patience)
-          _powerLed.Breathe(1200, 200, 300).Forever();      // Power breathing.
-        _feedbackLed.Blink(stressFrq, stressFrq).Forever(); // Feedback blinking.
-        _relay.Off().Forever();                             // Relay OFF.
+          _powerLed.Breathe(1200, 200, 300).Forever(); // Power breathing.
+        if (_seqIdx == _seqLen - 1)
+          _feedbackLed.On().Forever(); // Feedback blinking.
+        else
+          _feedbackLed.Blink(stressFrq, stressFrq).Forever(); // Feedback blinking.
+        _relay.Off().Forever();                               // Relay OFF.
         break;
       case Phase::Patience:
         _feedbackLed.On().Forever(); // Feedback ON.
